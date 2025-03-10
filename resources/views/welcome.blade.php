@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Salud</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -268,6 +268,6 @@
 
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
-        @endif
+        @endif 
     </body>
 </html>
