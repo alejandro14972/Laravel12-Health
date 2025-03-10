@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BloodPressureController;
 use App\Http\Controllers\UserController;
+use App\Models\BloodPressure;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
@@ -18,6 +20,12 @@ Route::view('dashboard', 'dashboard')
 Route::get('/users', [UserController::class, 'index'])->middleware('auth', 'verified')->name('users.index');
 Route::get('/users/create', [UserController::class, 'create'])->middleware('auth', 'verified')->name('users.create');
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('auth', 'verified')->name('users.edit');
+
+
+//blood presures routes
+
+Route::get('/blood-presures', [BloodPressureController::class, 'index'])->middleware('auth', 'verified')->name('blood-presures.index');
+Route::get('/blood-presures/create', [BloodPressureController::class, 'create'])->middleware('auth', 'verified')->name('blood-presures.create');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');

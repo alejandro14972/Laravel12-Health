@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('pulse');
             $table->date('date');
             $table->integer('toma');
-            $table->time('time')->enum('morning', 'evening');
+            $table->string('time');
             $table->string('notes')->nullable();
             //$table->string('source')->nullable();
             $table->timestamps();

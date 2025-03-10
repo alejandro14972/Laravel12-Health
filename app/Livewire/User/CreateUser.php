@@ -35,6 +35,7 @@ class CreateUser extends Component
         $this->roles = Role::all();
         $this->password = Str::random(10);
 
+        //desactivar en un futuro
         $this->name = fake()->name();
         $this->surname = fake()->lastName();
         $this->email = fake()->unique()->safeEmail();

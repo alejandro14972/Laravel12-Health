@@ -12,7 +12,9 @@ class BloodPressureController extends Controller
      */
     public function index()
     {
-        //
+        $user = auth()->user();
+        $bloodPressures = BloodPressure::where('user_id', $user)->get();
+        return view('blood-pressures.index', compact('bloodPressures'));
     }
 
     /**
@@ -20,7 +22,7 @@ class BloodPressureController extends Controller
      */
     public function create()
     {
-        //
+        return view('blood-pressures.create');
     }
 
     /**
