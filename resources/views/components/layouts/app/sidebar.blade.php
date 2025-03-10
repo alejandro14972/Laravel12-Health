@@ -16,8 +16,10 @@
                     <flux:navlist.item icon="home" :href="route('dashboard')" class="mt-3" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                     
                     @can('view patients')
-                    <flux:navlist.item icon="user" :href="route('users.index')" class="mt-3" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Usuarios') }}</flux:navlist.item>
+                    <flux:navlist.item icon="user" :href="route('users.index')" class="mt-3" :current="request()->routeIs('users.index')" wire:navigate>{{ __('Usuarios') }}</flux:navlist.item>
                     @endcan
+
+                    <flux:navlist.item icon="chart-pie" :href="route('blood-presures.index')" class="mt-3" :current="request()->routeIs('blood-presures.index')" wire:navigate>{{ __('Blood presure') }}</flux:navlist.item>
                 
                 </flux:navlist.group>
             </flux:navlist>

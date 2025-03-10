@@ -20,7 +20,7 @@ class ViewUsers extends Component
 
     public function render()
     {
-        $users = User::all();
+        $users = User::paginate(10);
         return view('livewire.user.view-users', compact('users'));
         
     }
