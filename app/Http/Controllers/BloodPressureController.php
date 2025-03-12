@@ -46,7 +46,7 @@ class BloodPressureController extends Controller
      */
     public function edit(BloodPressure $bloodPressure)
     {
-        //
+        return view('blood-pressures.edit', compact('bloodPressure'));
     }
 
     /**

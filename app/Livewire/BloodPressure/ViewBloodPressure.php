@@ -4,13 +4,24 @@ namespace App\Livewire\BloodPressure;
 
 use App\Models\BloodPressure;
 use Carbon\Carbon;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ViewBloodPressure extends Component
 {
+
+    #[On('deletebloodPressure')]
+    public function deletebloodPressure($bloodPressureId)
+    {
+        $bloodPressure = BloodPressure::find($bloodPressureId);
+        $elemteoBorrado = $bloodPressure[0];
+        $elemteoBorrado->delete();
+    }
+
+
+
     public function render()
     {
-
         //datos tabla
         $bloodPressureData = BloodPressure::where('user_id', auth()->id())
             ->where('date', '>=', Carbon::now()->subDays(7))
