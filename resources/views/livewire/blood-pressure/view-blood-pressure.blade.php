@@ -14,15 +14,33 @@
                 </div>
             </div>
 
+            <div class="flex justify-end mt-3">
+                <button type="button" id="cargarDatos"
+                    class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 
+                    focus:ring-yellow-300 font-medium rounded-lg 
+                    text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Cargar
+                    datos
+                </button>
+            </div>
+
+            <div class="flex justify-end mt-3">
+                <button type="button" id="OcultarDatos"
+                    class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 
+                    focus:ring-red-300 font-medium rounded-lg 
+                    text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Ocultar
+                    datos
+                </button>
+            </div>
+
             <!-- Gráfico all-->
 
-            <div class="max-w-4xl mx-auto p-6">
+            <div class="max-w-4xl mx-auto p-6" id="grafico1">
                 <h2 class="text-xl font-bold text-gray-700 dark:text-white">Historial de Presión Arterial</h2>
                 <canvas id="bloodPressureChartCompleted"></canvas>
             </div>
 
             {{-- grafico media avg --}}
-            <div class="max-w-4xl mx-auto p-6">
+            <div class="max-w-4xl mx-auto p-6" id="grafico2">
                 <h2 class="text-xl font-bold text-gray-700 dark:text-white">Media diaria de presión arterial</h2>
                 <canvas id="bloodPressureChartAvg"></canvas>
             </div>
@@ -59,7 +77,7 @@
                                 <td class="border px-4 py-2 text-center text-gray-800 dark:text-white">
                                     {{ $blood->time }}</td>
                                 <td class="border px-4 py-2 text-center flex justify-evenly">
-                                    <a href="{{ route('users.edit', $blood->id) }}"
+                                    <a href="{{ route('blood-presures.edit', $blood->id) }}"
                                         class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded">
                                         {{ __('Editar') }}
                                     </a>
@@ -86,38 +104,42 @@
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <script>
-    document.addEventListener('livewire:initialized', () => {
-        Livewire.on('mostrarAlerta', (userId) => {
-            Swal.fire({
-                title: '¿Eliminar usuario?',
-                text: "Un usuario eliminado no podrá ser recuperado.",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, eliminar',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    @this.call('deleteUser', userId);
-                    Swal.fire(
-                        'Eliminado!',
-                        'El usuario fue eliminado correctamente.',
-                        'success'
-                    );
-                }
-            });
-        });
-    });
+    var botonCargar = document.getElementById('cargarDatos');
+    botonCargar.addEventListener('click', cargarDatos);
+
+    var botonOcultar = document.querySelector('#OcultarDatos');
+    botonOcultar.addEventListener('click', ocultarDatos);
+
+    botonOcultar.style.display = 'none';
+
+    var grafico1 = document.getElementById('grafico1');
+    grafico1.style.display = 'none';
+    var grafico2 = document.getElementById('grafico2');
+    grafico2.style.display = 'none';
+
+    function cargarDatos() {
+        botonCargar.style.display = 'none';
+        botonOcultar.style.display = 'block';
+        grafico1.style.display = 'block';
+        grafico2.style.display = 'block';
+    }
+
+    function ocultarDatos() {
+        botonCargar.style.display = 'block';
+        botonOcultar.style.display = 'none';
+        grafico1.style.display = 'none';
+        grafico2.style.display = 'none';
+    }
 </script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    var url = window.location.pathname;
+    var miUrl = "/blood-presures";
+
+    if (url == miUrl) {
+
         const ctx = document.getElementById('bloodPressureChartAvg').getContext('2d');
 
         const labels = @json($bloodTime->pluck('date'));
@@ -136,25 +158,29 @@
                         label: 'Max Mañanas',
                         data: avg_systolicMorning,
                         borderColor: 'rgb(54, 162, 235)',
-                        tension: 0.1
+                        tension: 0.5,
+                        pointBorderWidth: 4
                     },
                     {
                         label: 'Min Mañanas',
                         data: avg_diastolicMorning,
                         borderColor: 'rgb(191, 19, 209)',
-                        tension: 0.1
+                        tension: 0.5,
+                        pointBorderWidth: 4
                     },
                     {
                         label: 'Max Tarde',
                         data: avg_systolicEvening,
                         borderColor: 'rgb(209, 206, 19 )',
-                        tension: 0.1
+                        tension: 0.5,
+                        pointBorderWidth: 4
                     },
                     {
                         label: 'Min Tarde',
                         data: avg_diastolicEvening,
                         borderColor: 'rgb(229, 15, 51)',
-                        tension: 0.1
+                        tension: 0.5,
+                        pointBorderWidth: 4
                     }
                 ]
             },
@@ -167,11 +193,15 @@
                 }
             }
         });
-    });
+
+    }
 </script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    var url = window.location.pathname;
+    var miUrl = "/blood-presures";
+
+    if (url == miUrl) {
         const ctx = document.getElementById('bloodPressureChartCompleted').getContext('2d');
 
         const labels = @json($bloodPressureDataAllMorning->pluck('date'));
@@ -222,6 +252,32 @@
                 }
 
             }
+        });
+    }
+</script>
+
+<script>
+    document.addEventListener('livewire:initialized', () => {
+        Livewire.on('mostrarAlerta', (bloodPressureId) => {
+            Swal.fire({
+                title: '¿Eliminar?',
+                text: "Un medida eliminada no podrá ser recuperada.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    @this.call('deletebloodPressure', bloodPressureId);
+                    Swal.fire(
+                        'Eliminado!',
+                        ' Eliminada correctamente.',
+                        'success'
+                    );
+                }
+            });
         });
     });
 </script>

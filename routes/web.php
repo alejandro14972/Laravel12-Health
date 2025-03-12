@@ -23,9 +23,9 @@ Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('a
 
 
 //blood presures routes
-
 Route::get('/blood-presures', [BloodPressureController::class, 'index'])->middleware('auth', 'verified')->name('blood-presures.index');
 Route::get('/blood-presures/create', [BloodPressureController::class, 'create'])->middleware('auth', 'verified')->name('blood-presures.create');
+Route::get('/blood-presures/{blood_pressure}/edit', [BloodPressureController::class, 'edit'])->middleware('auth', 'verified')->name('blood-presures.edit');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');

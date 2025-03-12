@@ -1,5 +1,5 @@
 <div class="max-w-4xl mx-auto p-6">
-    <form wire:submit.prevent="createNewBloodPressure">
+    <form wire:submit.prevent="updateBloodPressure">
         <!-- systolic-->
         <div class="mb-4">
             <label class="block text-gray-700 dark:text-white font-medium mb-1">{{ __('Máxima') }}</label>
@@ -89,7 +89,7 @@
         <div class="mt-6 flex justify-end">
             <button type="submit"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition duration-200">
-                {{ __('Guardar') }}
+                {{ __('Editar') }}
             </button>
         </div>
     </form>
