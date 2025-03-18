@@ -2,6 +2,8 @@
 
 namespace App\Livewire\User;
 
+use App\Models\Doctor;
+use App\Models\Speciality;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
@@ -12,8 +14,8 @@ use Illuminate\Support\Str;
 
 class CreateUser extends Component
 {
-    public $name, $surname, $email, $dni, $adress, $password, $gender, $birthdate, $phone, $role;
-    public $roles;
+    public $id, $name, $surname, $email, $dni, $adress, $password, $gender, $birthdate, $phone, $role, $speciality;
+    public $roles, $specialities;
 
     use WithFileUploads;
 
@@ -33,6 +35,7 @@ class CreateUser extends Component
     public function mount()
     {
         $this->roles = Role::all();
+        $this->specialities = Speciality::all();
         $this->password = Str::random(10);
 
         //desactivar en un futuro
@@ -68,6 +71,14 @@ class CreateUser extends Component
 
         // Asignar rol al usuario
         $user->assignRole($this->role);
+
+
+        if ($this->role == 'doctor') {
+            Doctor::create([
+                'user_id' => $user->id,
+                'speciality_id' => $this->speciality
+            ]);
+        }
 
         // Mensaje de éxito
         session()->flash('message', 'Usuario creado correctamente.');

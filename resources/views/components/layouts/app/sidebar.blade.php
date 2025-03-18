@@ -15,14 +15,25 @@
 
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Navegación')" class="grid">
+
                     <flux:navlist.item icon="home" :href="route('dashboard')" class="mt-3" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                     
-                    @can('view patients')
+                    @can('view users')
                     <flux:navlist.item icon="user" :href="route('users.index')" class="mt-3" :current="request()->routeIs('users.index')" wire:navigate>{{ __('Usuarios') }}</flux:navlist.item>
                     @endcan
 
+                    @can('view patients')
+                    <flux:navlist.item icon="users" :href="route('blood-presures.index')" class="mt-3" :current="request()->routeIs('blood-presures.index')" wire:navigate>{{ __('Mis pacientes') }}</flux:navlist.item>
+                    @endcan
+                    
+                    @can('view blood pressures')
                     <flux:navlist.item icon="chart-pie" :href="route('blood-presures.index')" class="mt-3" :current="request()->routeIs('blood-presures.index')" wire:navigate>{{ __('Blood presure') }}</flux:navlist.item>
-                
+                    @endcan
+
+                    @can('view users') {{-- cambiar por view speciality --}} 
+                    <flux:navlist.item icon="folder" :href="route('specialities.index')" class="mt-3" :current="request()->routeIs('specialities.index')" wire:navigate>{{ __('Especialidaes') }}</flux:navlist.item>
+                    @endcan
+
                 </flux:navlist.group>
             </flux:navlist>
 

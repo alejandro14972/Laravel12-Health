@@ -119,6 +119,28 @@
             @enderror
         </div>
 
+
+
+          <!-- Seleccionar ESPECIALIDAD -->
+
+         
+          <div class="mb-4">
+            <label class="block text-gray-700 dark:text-white font-medium mb-1">{{ __('Especialidad') }}</label>
+            <select wire:model="speciality"
+                class="w-full border border-gray-300 rounded-lg px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800">
+                <option value="" class="dark:text-gray-800">{{ __('Seleccione una especialidad para doctor') }}</option>
+                @foreach ($specialities as $speciality)
+                    <option value="{{ $speciality->id }}" class="dark:text-gray-800">{{ ucfirst($speciality->name) }}</option>
+                @endforeach
+            </select>
+            @error('speciality')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+         
+          
+
+
+
         <!-- Botón de Enviar -->
         <div class="mt-6 flex justify-end">
             <button type="submit"

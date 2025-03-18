@@ -23,6 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var list<string>
      */
     protected $fillable = [
+        'id',
         'name',
         'surname',
         'email',
@@ -75,5 +76,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getRoleName()
     {
         return $this->roles->pluck('name')->first(); 
+    }
+
+    // Relación 1:1 con Doctor (si el usuario es doctor)
+    public function doctor()
+    {
+        return $this->hasOne(Doctor::class);
     }
 }
