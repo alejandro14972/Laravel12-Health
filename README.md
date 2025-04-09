@@ -32,3 +32,5 @@ Rol	Funcionalidades principales
 
 
 ![Captura de pantalla 2025-03-12 164309](https://github.com/user-attachments/assets/f1df0b8a-b9b1-4ee9-83f6-55ecdae3229a)
+
+![health1](https://github.com/user-attachments/assets/97bd85fa-e90a-4fa6-b568-734063a11646)
