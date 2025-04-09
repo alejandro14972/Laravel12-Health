@@ -1,5 +1,5 @@
 
-# 🏥 Sistema de Gestión Médica - Laravel (In develop)
+# 🏥 Sistema de Gestión Médica - Laravel (En desarrollo)
 
 Aplicación web desarrollada con Laravel para la gestión de pacientes, doctores y administradores, con funcionalidades específicas para cada rol. El sistema permite llevar un control de la presión arterial de cada paciente y visualizar la evolución gráfica. 
 
