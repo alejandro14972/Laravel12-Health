@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\allergie;
+use App\Models\vaccines;
 use Illuminate\Http\Request;
 
-class AllergieController extends Controller
+class VaccinesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('allergies.index');
+        //
     }
 
     /**
@@ -34,7 +34,7 @@ class AllergieController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(allergie $allergie)
+    public function show(vaccines $vaccines)
     {
         //
     }
@@ -42,7 +42,7 @@ class AllergieController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(allergie $allergie)
+    public function edit(vaccines $vaccines)
     {
         //
     }
@@ -50,7 +50,7 @@ class AllergieController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, allergie $allergie)
+    public function update(Request $request, vaccines $vaccines)
     {
         //
     }
@@ -58,7 +58,7 @@ class AllergieController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(allergie $allergie)
+    public function destroy(vaccines $vaccines)
     {
         //
     }

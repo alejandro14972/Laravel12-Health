@@ -30,8 +30,16 @@
                     <flux:navlist.item icon="chart-pie" :href="route('blood-presures.index')" class="mt-3" :current="request()->routeIs('blood-presures.index')" wire:navigate>{{ __('Blood presure') }}</flux:navlist.item>
                     @endcan
 
-                    @can('view users') {{-- cambiar por view speciality --}} 
-                    <flux:navlist.item icon="folder" :href="route('specialities.index')" class="mt-3" :current="request()->routeIs('specialities.index')" wire:navigate>{{ __('Especialidaes') }}</flux:navlist.item>
+                    @can('view users')
+                    <flux:navlist.item icon="folder" :href="route('specialities.index')" class="mt-3" :current="request()->routeIs('specialities.index')" wire:navigate>{{ __('Especialidaes doctorales') }}</flux:navlist.item>
+                    @endcan
+
+                    @can('view users')
+                    <flux:navlist.item icon="folder" :href="route('allergies.index')" class="mt-3" :current="request()->routeIs('allergies.index')" wire:navigate>{{ __('Alergias') }}</flux:navlist.item>
+                    @endcan
+
+                    @can('view users')
+                    <flux:navlist.item icon="folder" :href="route('specialities.index')" class="mt-3" :current="request()->routeIs('specialities.index')" wire:navigate>{{ __('Vacunas') }}</flux:navlist.item>
                     @endcan
 
                 </flux:navlist.group>

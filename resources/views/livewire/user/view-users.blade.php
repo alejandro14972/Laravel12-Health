@@ -17,12 +17,20 @@
                 <table class="table-auto w-full border-collapse border border-gray-300">
                     <thead>
                         <tr class="bg-gray-100 dark:bg-gray-800">
-                            <th class="border px-4 py-2 text-left text-gray-800 dark:text-white">{{ __('Nombre') }}</th>
-                            <th class="border px-4 py-2 text-left text-gray-800 dark:text-white">{{ __('Apellidos') }}</th>
-                            <th class="border px-4 py-2 text-left text-gray-800 dark:text-white">{{ __('Email') }}</th>
-                            <th class="border px-4 py-2 text-left text-gray-800 dark:text-white">{{ __('Dni') }}</th>
-                            <th class="border px-4 py-2 text-left text-gray-800 dark:text-white">{{ __('rol') }}</th>
-                            <th class="border px-4 py-2 text-center text-gray-800 dark:text-white">{{ __('Acciones') }}</th>
+                            <th class="border px-4 py-2 text-left text-gray-800 dark:text-white">{{ __('Nombre') }}
+                            </th>
+                            <th class="border px-4 py-2 text-left text-gray-800 dark:text-white">{{ __('Apellidos') }}
+                            </th>
+                            <th class="border px-4 py-2 text-left text-gray-800 dark:text-white">{{ __('Email') }}
+                            </th>
+                            <th class="border px-4 py-2 text-left text-gray-800 dark:text-white">{{ __('Dni') }}
+                            </th>
+                            <th class="border px-4 py-2 text-left text-gray-800 dark:text-white">{{ __('rol') }}
+                            </th>
+                            <th class="border px-4 py-2 text-left text-gray-800 dark:text-white">{{ __('alergias') }}
+                            </th>
+                            <th class="border px-4 py-2 text-center text-gray-800 dark:text-white">{{ __('Acciones') }}
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,9 +40,23 @@
                                 <td class="border px-4 py-2 text-gray-800 dark:text-white">{{ $user->surname }}</td>
                                 <td class="border px-4 py-2 text-gray-800 dark:text-white">{{ $user->email }}</td>
                                 <td class="border px-4 py-2 text-gray-800 dark:text-white">{{ $user->dni }}</td>
-                                <td class="border px-4 py-2 text-gray-800 dark:text-white">{{ $user->getRoleName() }}</td>
+                                <td class="border px-4 py-2 text-gray-800 dark:text-white">{{ $user->getRoleName() }}
+                                </td>
+                                <td class="border px-4 py-2 text-gray-800 dark:text-white">
+
+                                    @if ($user->allergies->isNotEmpty())
+                                        <ul>
+                                            @foreach ($user->allergies as $allergy)
+                                                <li>{{ $allergy->name }}</li>
+                                            @endforeach
+                                        </ul>
+                                    @else
+                                        {{ __('No tiene alergias registradas') }}
+                                    @endif
+
+                                </td>
                                 <td class="border px-4 py-2 text-center space-x-2">
-                                    
+
                                     <a href="{{-- {{ route('users.show', $user->id) }} --}}"
                                         class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded">
                                         {{ __('Ver') }}
