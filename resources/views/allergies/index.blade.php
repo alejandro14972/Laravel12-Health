@@ -1,8 +1,8 @@
 <x-layouts.app title="Pacientes">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Gestión de usuarios') }}
+            {{ __('Gestión de alergias') }}
         </h2>
     </x-slot>
-    <livewire:specialities.view-specialities />
+    <livewire:allergies.view-allergies/>
 </x-layouts.app>

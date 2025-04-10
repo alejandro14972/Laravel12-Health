@@ -36,7 +36,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone',
         'role',
     ];
-    
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -68,19 +68,24 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return Str::of($this->name)
             ->explode(' ')
-            ->map(fn (string $name) => Str::of($name)->substr(0, 1))
+            ->map(fn(string $name) => Str::of($name)->substr(0, 1))
             ->implode('');
     }
 
     //relacion con rol
     public function getRoleName()
     {
-        return $this->roles->pluck('name')->first(); 
+        return $this->roles->pluck('name')->first();
     }
 
     // Relación 1:1 con Doctor (si el usuario es doctor)
     public function doctor()
     {
         return $this->hasOne(Doctor::class);
+    }
+
+    public function allergies()
+    {
+        return $this->belongsToMany(allergie::class, 'user_allergies', 'user_id', 'allergy_id');
     }
 }
