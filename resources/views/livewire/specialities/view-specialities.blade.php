@@ -28,7 +28,7 @@
                                 <td class="border px-4 py-2 text-gray-800 dark:text-white">{{ $speciality->description }}</td>
                                 <td class="border px-4 py-2 text-center space-x-2">
                                     
-                                    <a href="{{-- {{ route('specialitys.edit', $speciality->id) }} --}}"
+                                    <a href="{{ route('specialities.edit', $speciality->id) }}"
                                         class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded">
                                         {{ __('Editar') }}
                                     </a>
